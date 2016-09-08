@@ -1,0 +1,210 @@
+[ 2016-09-07T10:03:50+08:00 ] 127.0.0.1 127.0.0.1 GET /
+[ log ] 127.0.0.1:10000/ [运行时间：0.052892s][吞吐率：18.91req/s] [内存消耗：217.43kb] [文件加载：27]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ RUN ] Method [ <user> public method index ] {
+  @@ /home/yexk/vhosts_test/tp_toto/application/index/controller/Index.php 15 - 20
+}
+
+[ info ] [ VIEW ] /home/yexk/vhosts_test/tp_toto/public/../application/index/view/index/index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File: array (
+  'path' => '/home/yexk/vhosts_test/tp_toto/public/../runtime/log/',
+)
+
+[ 2016-09-07T10:04:20+08:00 ] 127.0.0.1 127.0.0.1 GET /
+[ log ] 127.0.0.1:10000/ [运行时间：0.002306s][吞吐率：433.65req/s] [内存消耗：150.59kb] [文件加载：27]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ RUN ] Method [ <user> public method index ] {
+  @@ /home/yexk/vhosts_test/tp_toto/application/index/controller/Index.php 15 - 20
+}
+
+[ info ] [ VIEW ] /home/yexk/vhosts_test/tp_toto/public/../application/index/view/index/index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File: array (
+  'path' => '/home/yexk/vhosts_test/tp_toto/public/../runtime/log/',
+)
+
+[ 2016-09-07T10:11:52+08:00 ] 127.0.0.1 127.0.0.1 GET /admin
+[ log ] 127.0.0.1:10000/admin [运行时间：0.023628s][吞吐率：42.32req/s] [内存消耗：194.40kb] [文件加载：31]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ RUN ] Method [ <user> public method index ] {
+  @@ /home/yexk/vhosts_test/tp_toto/application/admin/controller/Index.php 6 - 9
+}
+
+[ info ] [ VIEW ] /home/yexk/vhosts_test/tp_toto/public/../application/admin/view/index/index.html [ array (
+) ]
+[ info ] [ CACHE ] INIT File:array (
+  'type' => 'File',
+  'path' => '/home/yexk/vhosts_test/tp_toto/public/../runtime/cache/',
+  'prefix' => '',
+  'expire' => 0,
+)
+[ info ] [ LOG ] INIT File: array (
+  'path' => '/home/yexk/vhosts_test/tp_toto/public/../runtime/log/',
+)
+
+[ 2016-09-07T10:11:52+08:00 ] 127.0.0.1 127.0.0.1 GET /Adminitstrator/assets/js/jquery.min.map
+[ log ] 127.0.0.1:10000/Adminitstrator/assets/js/jquery.min.map [运行时间：0.001625s][吞吐率：615.45req/s] [内存消耗：112.05kb] [文件加载：24]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Adminitstrator',
+    1 => 'assets',
+    2 => 'js',
+  ),
+)
+[ info ] [ LOG ] INIT File: array (
+  'path' => '/home/yexk/vhosts_test/tp_toto/public/../runtime/log/',
+)
+
+[ 2016-09-07T10:12:34+08:00 ] 127.0.0.1 127.0.0.1 GET /admin/index/test
+[ log ] 127.0.0.1:10000/admin/index/test [运行时间：0.006474s][吞吐率：154.46req/s] [内存消耗：211.55kb] [文件加载：27]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'test',
+  ),
+)
+[ info ] [ RUN ] Method [ <user> public method test ] {
+  @@ /home/yexk/vhosts_test/tp_toto/application/admin/controller/Index.php 16 - 19
+}
+
+[ info ] [ LOG ] INIT File: array (
+  'path' => '/home/yexk/vhosts_test/tp_toto/public/../runtime/log/',
+)
+
+[ 2016-09-07T10:33:25+08:00 ] 127.0.0.1 127.0.0.1 GET /admin/index/admin
+[ log ] 127.0.0.1:10000/admin/index/admin [运行时间：0.004008s][吞吐率：249.50req/s] [内存消耗：135.70kb] [文件加载：27]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'admin',
+  ),
+)
+[ info ] [ RUN ] Method [ <user, inherits app\admin\controller\Common> public method _empty ] {
+  @@ /home/yexk/vhosts_test/tp_toto/application/admin/controller/Common.php 14 - 17
+
+  - Parameters [1] {
+    Parameter #0 [ <required> $name ]
+  }
+}
+
+[ info ] [ LOG ] INIT File: array (
+  'path' => '/home/yexk/vhosts_test/tp_toto/public/../runtime/log/',
+)
+
+[ 2016-09-07T10:34:52+08:00 ] 127.0.0.1 127.0.0.1 GET /admin/index/index
+[ log ] 127.0.0.1:10000/admin/index/index [运行时间：0.006860s][吞吐率：145.77req/s] [内存消耗：192.93kb] [文件加载：31]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ RUN ] Method [ <user> public method index ] {
+  @@ /home/yexk/vhosts_test/tp_toto/application/admin/controller/Index.php 6 - 9
+}
+
+[ info ] [ VIEW ] /home/yexk/vhosts_test/tp_toto/public/../application/admin/view/index/index.html [ array (
+) ]
+[ info ] [ CACHE ] INIT File:array (
+  'type' => 'File',
+  'path' => '/home/yexk/vhosts_test/tp_toto/public/../runtime/cache/',
+  'prefix' => '',
+  'expire' => 0,
+)
+[ info ] [ LOG ] INIT File: array (
+  'path' => '/home/yexk/vhosts_test/tp_toto/public/../runtime/log/',
+)
+
+[ 2016-09-07T10:34:52+08:00 ] 127.0.0.1 127.0.0.1 GET /Adminitstrator/assets/js/jquery.min.map
+[ log ] 127.0.0.1:10000/Adminitstrator/assets/js/jquery.min.map [运行时间：0.002106s][吞吐率：474.84req/s] [内存消耗：112.05kb] [文件加载：24]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Adminitstrator',
+    1 => 'assets',
+    2 => 'js',
+  ),
+)
+[ info ] [ LOG ] INIT File: array (
+  'path' => '/home/yexk/vhosts_test/tp_toto/public/../runtime/log/',
+)
+
+[ 2016-09-07T10:34:57+08:00 ] 127.0.0.1 127.0.0.1 GET /admin/index/productlist.html
+[ log ] 127.0.0.1:10000/admin/index/productlist.html [运行时间：0.013836s][吞吐率：72.27req/s] [内存消耗：165.53kb] [文件加载：31]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'productlist',
+  ),
+)
+[ info ] [ RUN ] Method [ <user> public method productList ] {
+  @@ /home/yexk/vhosts_test/tp_toto/application/admin/controller/Index.php 11 - 14
+}
+
+[ info ] [ VIEW ] /home/yexk/vhosts_test/tp_toto/public/../application/admin/view/index/product_list.html [ array (
+) ]
+[ info ] [ CACHE ] INIT File:array (
+  'type' => 'File',
+  'path' => '/home/yexk/vhosts_test/tp_toto/public/../runtime/cache/',
+  'prefix' => '',
+  'expire' => 0,
+)
+[ info ] [ LOG ] INIT File: array (
+  'path' => '/home/yexk/vhosts_test/tp_toto/public/../runtime/log/',
+)
+
+[ 2016-09-07T10:34:57+08:00 ] 127.0.0.1 127.0.0.1 GET /Adminitstrator/assets/js/jquery.min.map
+[ log ] 127.0.0.1:10000/Adminitstrator/assets/js/jquery.min.map [运行时间：0.001111s][吞吐率：900.07req/s] [内存消耗：112.05kb] [文件加载：24]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Adminitstrator',
+    1 => 'assets',
+    2 => 'js',
+  ),
+)
+[ info ] [ LOG ] INIT File: array (
+  'path' => '/home/yexk/vhosts_test/tp_toto/public/../runtime/log/',
+)
+
