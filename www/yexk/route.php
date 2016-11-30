@@ -10,12 +10,16 @@
 // +----------------------------------------------------------------------
 
 return [
-    '__pattern__' => [
-        'name' => '\w+',
-    ],
-    '[hello]'     => [
-        ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
-        ':name' => ['index/hello', ['method' => 'post']],
-    ],
+    // '__pattern__' => [
+    //     'name' => '\w+',
+    // ],
+    // '[hello]'     => [
+    //     ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
+    //     ':name' => ['index/hello', ['method' => 'post']],
+    // ],
 
+	/* 后台路由 */
+	'yexk' => 'admin/index/index',
+
+	'v1/:test/[:index]' => 'index/v1.:test/:index'
 ];
