@@ -7,4 +7,14 @@ class Index extends Base
     {
 		return $this->fetch();
     }
+    
+    public function blog()
+    {
+    	return $this->fetch();
+    }
+    
+    public function blogList()
+    {    	
+    	return $this->fetch();
+    }
 }

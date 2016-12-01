@@ -10,7 +10,6 @@
 	<title>Yexk - admin</title>
 
 	<base href="{$baseurl}">
-	<link rel="stylesheet" href="http://fonts.useso.com/css?family=Arimo:400,700,400italic">
 	<link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
 	<link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="assets/css/bootstrap.css">
@@ -31,119 +30,8 @@
 	
 </head>
 <body class="page-body">
-
-	<div class="settings-pane">
-			
-		<a href="#" data-toggle="settings-pane" data-animate="true">
-			&times;
-		</a>
-		
-		<div class="settings-pane-inner">
-			
-			<div class="row">
-				
-				<div class="col-md-4">
-					
-					<div class="user-info">
-						
-						<div class="user-image">
-							<a href="extra-profile.html">
-								<img src="assets/images/user-2.png" class="img-responsive img-circle" />
-							</a>
-						</div>
-						
-						<div class="user-details">
-							
-							<h3>
-								<a href="extra-profile.html">John Smith</a>
-								
-								<!-- Available statuses: is-online, is-idle, is-busy and is-offline -->
-								<span class="user-status is-online"></span>
-							</h3>
-							
-							<p class="user-title">Web Developer</p>
-							
-							<div class="user-links">
-								<a href="extra-profile.html" class="btn btn-primary">Edit Profile</a>
-								<a href="extra-profile.html" class="btn btn-success">Upgrade</a>
-							</div>
-							
-						</div>
-						
-					</div>
-					
-				</div>
-				
-				<div class="col-md-8 link-blocks-env">
-					
-					<div class="links-block left-sep">
-						<h4>
-							<span>Notifications</span>
-						</h4>
-						
-						<ul class="list-unstyled">
-							<li>
-								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk1" />
-								<label for="sp-chk1">Messages</label>
-							</li>
-							<li>
-								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk2" />
-								<label for="sp-chk2">Events</label>
-							</li>
-							<li>
-								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk3" />
-								<label for="sp-chk3">Updates</label>
-							</li>
-							<li>
-								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk4" />
-								<label for="sp-chk4">Server Uptime</label>
-							</li>
-						</ul>
-					</div>
-					
-					<div class="links-block left-sep">
-						<h4>
-							<a href="#">
-								<span>Help Desk</span>
-							</a>
-						</h4>
-						
-						<ul class="list-unstyled">
-							<li>
-								<a href="#">
-									<i class="fa-angle-right"></i>
-									Support Center
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<i class="fa-angle-right"></i>
-									Submit a Ticket
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<i class="fa-angle-right"></i>
-									Domains Protocol
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<i class="fa-angle-right"></i>
-									Terms of Service
-								</a>
-							</li>
-						</ul>
-					</div>
-					
-				</div>
-				
-			</div>
-		
-		</div>
-		
-	</div>
-	<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+	<div class="page-container">
+	<!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
 			
 		<!-- Add "fixed" class to make the sidebar fixed always to the browser viewport. -->
 		<!-- Adding class "toggle-others" will keep only one menu item open at a time. -->
@@ -176,57 +64,38 @@
 							<i class="fa-bars"></i>
 						</a>
 					</div>
-					
-					<!-- This will open the popup with user profile settings, you can use for any purpose, just be creative -->
-					<div class="settings-icon">
-						<a href="#" data-toggle="settings-pane" data-animate="true">
-							<i class="linecons-cog"></i>
-						</a>
-					</div>
-					
-								
+
 				</header>
-						
-				
-						
+
 				<ul id="main-menu" class="main-menu">
 					<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-					<li class="active opened active">
-						<a href="dashboard-1.html">
+					<li>
+						<a href="{:url('admin/index/index')}">
+							<i class="linecons-star"></i>
+							<span class="title">首页</span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:;">
 							<i class="linecons-cog"></i>
-							<span class="title">Dashboard</span>
+							<span class="title">文章分类管理</span>
 						</a>
 						<ul>
-							<li class="active">
-								<a href="dashboard-1.html">
-									<span class="title">Dashboard 1</span>
+							<li>
+								<a href="{:url('admin/Category/add')}">
+									<span class="title">分类添加</span>
 								</a>
 							</li>
 							<li>
-								<a href="dashboard-2.html">
-									<span class="title">Dashboard 2</span>
-								</a>
-							</li>
-							<li>
-								<a href="dashboard-3.html">
-									<span class="title">Dashboard 3</span>
-								</a>
-							</li>
-							<li>
-								<a href="dashboard-4.html">
-									<span class="title">Dashboard 4</span>
-								</a>
-							</li>
-							<li>
-								<a href="skin-generator.html">
-									<span class="title">Skin Generator</span>
+								<a href="{:url('admin/Category/read')}">
+									<span class="title">分类列表</span>
 								</a>
 							</li>
 						</ul>
 					</li>
 					<li>
-						<a href="layout-variants.html">
+						<a href="javascript:;">
 							<i class="linecons-desktop"></i>
 							<span class="title">Layouts</span>
 						</a>
@@ -366,12 +235,7 @@
 							</li>
 						</ul>
 					</li>
-					<li>
-						<a href="ui-widgets.html">
-							<i class="linecons-star"></i>
-							<span class="title">Widgets</span>
-						</a>
-					</li>
+
 					<li>
 						<a href="mailbox-main.html">
 							<i class="linecons-mail"></i>
@@ -1019,7 +883,7 @@
 				<a href="#" data-toggle="dropdown">
 					<img src="assets/images/user-4.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
 					<span>
-						Arlind Nushi
+						admin
 						<i class="fa-angle-down"></i>
 					</span>
 				</a>
@@ -1052,16 +916,10 @@
 					<li class="last">
 						<a href="extra-lockscreen.html">
 							<i class="fa-lock"></i>
-							Logout
+							退出登录
 						</a>
 					</li>
 				</ul>
-			</li>
-			
-			<li>
-				<a href="#" data-toggle="chat">
-					<i class="fa-comments-o"></i>
-				</a>
 			</li>
 			
 		</ul>

@@ -1,4 +1,6 @@
 <?php
+use think\Route;
+
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK ]
 // +----------------------------------------------------------------------
@@ -9,7 +11,7 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-return [
+// return [
     // '__pattern__' => [
     //     'name' => '\w+',
     // ],
@@ -19,7 +21,8 @@ return [
     // ],
 
 	/* 后台路由 */
-	'yexk' => 'admin/index/index',
-
-	'v1/:test/[:index]' => 'index/v1.:test/:index'
-];
+	// 'yexk' => 'admin/index/index',
+	// 'cate/[:a]' => 'admin/Category/:a',
+// ];
+Route::get('/','index/Index/index');
+// Route::rule('/a','index/index/index');
