@@ -30,15 +30,31 @@ class Category extends Model
 		}
 		$post['name'] = trim($post['name']);
 		$post['desc'] = trim($post['desc']);
-		$res = $this->save($post);
-		if (1 === $res)
+		if (isset($post['id']))
 		{
-			return ['code'=>1,'msg'=>'添加成功！','data'=>''];
+			$res = $this->isUpdate(true)->save($post,['id'=>$post['id']]);
+			if (1 === $res)
+			{
+				return ['code'=>1,'msg'=>'修改成功！','data'=>''];
+			}
+			else
+			{
+				return ['code'=>0,'msg'=>'暂无修改','data'=>''];
+			}
 		}
 		else 
 		{
-			return ['code'=>0,'msg'=>'未知错误！','data'=>''];
+			$res = $this->save($post);
+			if (1 === $res)
+			{
+				return ['code'=>1,'msg'=>'添加成功！','data'=>''];
+			}
+			else
+			{
+				return ['code'=>0,'msg'=>'未知错误！','data'=>''];
+			}
 		}
+		
 	}
 	
 	/**
@@ -51,12 +67,16 @@ class Category extends Model
 	 */
 	public function read($post = [])
 	{
+		$res = $this->all();
 		if (!empty($post['id']))
 		{
-			return $this->get(['id'=>$post['id']]);
+			$data['all'] = get_tree($res,$post['pid']);
+			$data['one'] = $this->get(['id'=>$post['id']]);
+			return $data;
+		}	
+		else 
+		{
+			return get_tree($res);
 		}
-		
-		$res = $this->all();
-		return get_tree($res);
 	}
 }
