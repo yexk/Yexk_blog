@@ -117,7 +117,7 @@
 	}
 
 	/**
-	 * TODO 提交数据，删除，待完成
+	 * TODO 提交数据，删除。
 	 * @Author Yexk
 	 * @Date   2016-12-05
 	 */
@@ -144,15 +144,41 @@
 	});
 	// 删除
 	function del(id) {
+		$.ajax({
+			url: '{:url("admin/Category/checkHasChild")}',
+			type: 'POST',
+			dataType: 'json',
+			data: {id:id},
+			success:function(data){
+				if (2 == data.code) 
+				{
+					if(confirm('你确定要删除吗？'))
+					{
+						$.ajax({
+							url: '{:url("admin/Category/del")}',
+							type: 'POST',
+							dataType: 'json',
+							data: {id:id},
+							success:function(data){
+								if (1 === data.code) 
+								{
+									alert(data.msg);
+								}else
+								{
+									alert(data.msg);
+								}
+							}
+						})
+					}
+				}else if (1 == data.code)
+				{
+					// alert('改分类下有子分类，确定要删除？');
+					alert('改分类下有子分类，请先删除子分类');
+				}
 
-		if(confirm('你确定要删除吗？'))
-		{
-
-		}
-		else
-		{
-
-		}
+			}
+		})
+		
 	}
 
 </script>

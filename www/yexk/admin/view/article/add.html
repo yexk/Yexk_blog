@@ -1,0 +1,150 @@
+{include file='public/header'}
+<link rel="stylesheet" href="assets/js/markdown/css/editormd.css">
+			<div class="row">
+				<div class="col-sm-12">
+					
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">文章分类添加</h3>
+						</div>
+						<div class="panel-body">
+							
+							<form id="cate_add" role="form" method="POST" class="form-horizontal">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">文章分类</label>
+									<div class="col-sm-10">
+										<select class="form-control" name="pid" id="pid">
+											<option value="0">顶级分类</option>
+											<?php foreach ($cate_list as $k => $v): ?>
+												<option value="<?php echo $v['id'] ?>"><?php echo str_repeat('&nbsp;',$v['level']*4) . $v['name'] ?></option>
+											<?php endforeach ?>
+										</select>
+									</div>
+								</div>
+								<div class="form-group-separator"></div>
+								
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="name">文章名称</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" name="name" id="name" >
+									</div>
+								</div>
+								<div class="form-group-separator"></div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="desc">文章描述</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" name="desc" id="desc" >
+									</div>
+								</div>
+								<div class="form-group-separator"></div>
+								
+								<div class="form-group">
+									<div class="col-sm-12">
+										<div class="editormd" id="test-editormd">
+										    <script type="text/markdown">###Hello world!</script>
+										</div>
+									</div>
+								</div>
+								<div class="form-group-separator"></div>
+								
+								<div class="form-group">
+								<div class="col-sm-10 col-sm-offset-2">
+									<button type="submit" class="btn btn-info btn-single">提交</button>
+								</div>
+								</div>
+								
+							</form>
+							
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+{include file='public/footer'}
+<script src="assets/js/markdown/editormd.js"></script>
+<script>
+var testEditor = null;
+$(function(){
+	testEditor = editormd({
+        id      : "test-editormd",
+        height  : 550,
+        emoji : true,
+        saveHTMLToTextarea : true,
+        path : 'assets/js/markdown/lib/'
+    });
+});
+
+
+// Validation and Ajax action
+$("form#cate_add").validate({
+	rules: {
+		name: {
+			required: true
+		},
+	},
+	messages: {
+		name: {
+			required: '请输入分类名称.'
+		},
+	},
+	
+	// Form Processing via AJAX
+	submitHandler: function(form)
+	{
+		console.log(testEditor.getHTML());
+		return false;
+		show_loading_bar(70); // Fill progress bar to 70% (just a given value)
+		$('[type="submit"]').prop('disabled', true);
+		var opts = {
+			"closeButton": true,
+			"debug": false,
+			"positionClass": "toast-bottom-right",
+			"onclick": null,
+			"showDuration": "300",
+			"hideDuration": "1000",
+			"timeOut": "5000",
+			"extendedTimeOut": "1000",
+			"showEasing": "swing",
+			"hideEasing": "linear",
+			"showMethod": "fadeIn",
+			"hideMethod": "fadeOut"
+		};
+		$.ajax({
+			url: "{:url('admin/Article/add')}",
+			method: 'POST',
+			dataType: 'json',
+			data: {
+				pid: $(form).find('#pid').val(),
+				name: $(form).find('#name').val(),
+				desc: $(form).find('#desc').val(),
+			},
+			success: function(resp)
+			{
+				show_loading_bar({
+					delay: .5,
+					pct: 100,
+					finish: function(){
+						// Redirect after successful login page (when progress bar reaches 100%)
+						if(1 === resp.code)
+						{
+							toastr.info(resp.msg,null,opts);
+							setTimeout(function(){
+								window.location.href = '{:url("admin/Article/add")}';
+							},1000);
+						}
+						else
+						{
+							$('[type="submit"]').prop('disabled', false);
+							toastr.error(resp.msg,null,opts);
+						}
+					}
+				});
+			}
+			
+		});
+	}
+		
+});
+</script>

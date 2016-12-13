@@ -73,6 +73,38 @@ class Category extends Base
     	$this->assign('cate_list',$CM->read());
     	return $this->fetch();
     }
-
+	
+    /**
+     * 删除前的检查，如果有子集就不让删除
+     * @date 2016年12月13日
+     * @author Yexk
+     *
+     * @return Array 返回数据
+     */
+    public function checkHasChild() 
+    {
+    	$request = Request::instance();
+    	if ($request->isAjax())
+    	{
+    	    $id  = $request->post()['id'];
+    	    $CM  = new CateModel();
+    	    return $CM->checkHasChild($id);
+    		exit();
+    	};
+    }
+    
+    public function del() 
+    {
+    	$request = Request::instance();
+    	if ($request->isAjax())
+    	{
+    	    $post = $request->post();
+    	    $CM   = new CateModel();
+    	    return $CM->del($post);
+    				
+    				
+    		exit();
+    	};
+    }
 
 }

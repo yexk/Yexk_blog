@@ -79,4 +79,51 @@ class Category extends Model
 			return get_tree($res);
 		}
 	}
+	
+	/**
+     * 删除前的检查，如果有子集就不让删除
+	 * @date 2016年12月13日
+	 * @author Yexk
+	 *
+	 * @param string $id 待检测的id。
+	 * @return number[]|string[] 返回结果
+	 */
+	public function checkHasChild($id = '') 
+	{
+		if ('' == $id)
+		{
+			return ['code'=>0,'msg'=>'未知错误！','data'=>''];
+		}
+		
+		$res = $this->get(['pid'=>$id]);
+		if ($res)
+		{
+			return ['code'=>1,'msg'=>'有子集','data'=>''];
+		}
+		else 
+		{
+			return ['code'=>2,'msg'=>'无子集','data'=>''];
+		}
+	}
+	
+	public function del($post) 
+	{
+		 if ( !isset($post['id']) )
+		 {
+		     return ['code'=>0,'msg'=>'未知错误！','data'=>''];
+		 }
+		 
+		 $res = $this->where(['id'=>$post['id']])->delete();
+		 if ($res)
+		 {
+		 	return ['code'=>1,'msg'=>'删除成功！','data'=>''];
+		 }
+		 else
+		 {
+		 	return ['code'=>0,'msg'=>'删除失败！','data'=>''];
+		 }
+		 
+		 
+	}
+	
 }
