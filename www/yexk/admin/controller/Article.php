@@ -21,6 +21,16 @@ class Article extends Base
 	public function add()
 	{
 		$CM = new Category();
+		$Ar = new ArticleModel();
+		$request = Request::instance();
+		if ($request->isAjax())
+		{
+		    $post = $request->post();
+		    return $Ar->write($post);
+					
+			exit();
+		}
+		
 		$this->assign('cate_list',$CM->read());
 		return $this->fetch();
 	}
@@ -33,15 +43,15 @@ class Article extends Base
 		if ($request->isAjax())
 		{
 			$post = $request->post();
-			$res = $CM->read($post);
-			if (null !== $res)
-			{
-				$this->success('获取成功',null,$res);
-			}
-			else
-			{
-				$this->success('未知错误！');
-			}
+			echo $Ar->read($post);
+// 			if (null !== $res)
+// 			{
+// // 				$this->success('获取成功',null,$res);
+// 			}
+// 			else
+// 			{
+// // 				$this->success('未知错误！');
+// 			}
 	
 			exit();
 		}
