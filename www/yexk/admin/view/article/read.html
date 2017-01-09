@@ -36,120 +36,75 @@
 <!-- Imported scripts on this page -->
 <script src="assets/js/datatables/js/jquery.dataTables.min.js"></script>
 <script src="assets/js/datatables/dataTables.bootstrap.js"></script>
-<script src="assets/js/datatables/yadcf/jquery.dataTables.yadcf.js"></script>
-<script src="assets/js/datatables/tabletools/dataTables.tableTools.min.js"></script>
 
 <script type="text/javascript">
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "positionClass": "toast-bottom-right",
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
 jQuery(document).ready(function($)
 {
 	$("#article_tables").dataTable({
-		// "ajax": '{:url("admin/Article/read")}',
-		"ajax" : {
+		"processing": true,
+        "serverSide": true,
+        "ajax" : {
             "url": '{:url("admin/Article/read")}',
             "type": "POST",
             "dataType":'json'
         },
-		"processing": true,
-        "serverSide": true,
-		"displayLength" : 20, //默认显示的记录数  
-		"lengthMenu" : [20, 40, 60], //更改显示记录数选项  
-		"scrollCollapse" : true, //是否开启DataTables的高度自适应，当数据条数不够分页数据条数的时候，插件高度是否随数据条数而改变  
-		"info" : true, //是否显示页脚信息，DataTables插件左下角显示记录数  
-		"bFilter" : true, //是否启动过滤、搜索功能  
-        "aoColumns" : [{  
-            "mDataProp" : "ID",  
-            "sDefaultContent" : "", //此列默认值为""，以防数据中没有此值，DataTables加载数据的时候报错  
-            "bVisible" : false //此列不显示  
-        }, {  
-            "mDataProp" : "cid",  
-            "sTitle" : "分类名称",  
-            "sDefaultContent" : "",  
-            "sClass" : "center"  
-        }, {  
-            "mDataProp" : "title",  
-            "sTitle" : "标题",  
-            "sDefaultContent" : "",  
-            "sClass" : "center"  
-        }, {  
-            "mDataProp" : "desc",  
-            "sTitle" : "描述",  
-            "sDefaultContent" : "",  
-            "sClass" : "center"  
-        }, {  
-            "mDataProp" : "create_time",  
-            "sTitle" : "发布时间",  
-            "sDefaultContent" : "",  
-            "sClass" : "center"  
-        }, {  
-            "mDataProp" : "id",  
-            "sTitle" : "操作",  
-            "sDefaultContent" : "",  
-            "sClass" : "center"  
-        }],  
-        "oLanguage": { //国际化配置  
-            "sProcessing" : "<h1 style=\"background: rgba(0,0,0,0.1); width: 500px; margin: 50px auto;\">正在获取数据，请稍后...</h1>",
-            "sLengthMenu" : "显示 _MENU_ 条",    
-            "sZeroRecords" : "没有您要搜索的内容",    
-            "sInfo" : "从 _START_ 到  _END_ 条记录 (总记录数为 _TOTAL_ 条)",    
-            "sInfoPostFix" : "",    
-            "sSearch" : "搜索",    
-            "sUrl" : "",    
-            "oPaginate": {    
-                "sFirst" : "首页",    
-                "sPrevious" : "上一页",    
-                "sNext" : "下一页",    
-                "sLast" : "尾页"    
-            }  
-        },
-        "fnRowCallback" : function(row,obj) {
-        	var _html = '';
-        	_html += '<button type="button" class="btn btn-default">编辑'+obj.edit+'</button>';
-            /* 用来改写用户权限的 */  
-            // if (aData.ISADMIN == '1')  
-            //     $('td:eq(5)', nRow).html('管理员');  
-            // if (aData.ISADMIN == '2')  
-            //     $('td:eq(5)', nRow).html('资料下载');  
-            // if (aData.ISADMIN == '3')  
-              
-            $('td:eq(4)', row).html(_html);  
-            // return _html;  
-        },  
-        //服务器端，数据回调处理  
-        // "fnServerData" : function(sSource, aDataSet, fnCallback) {
-        // 	console.log(arguments);
-        //     $.ajax({  
-        //         "dataType" : 'json',  
-        //         "type" : "POST",  
-        //         "url" : '{:url("admin/Article/read")}',  
-        //         "data" : aDataSet,  
-        //         "success" : fnCallback  
-        //     });  
-        // }  
+        "columns": [
+            { "data": "id" , "title" : "ID" },
+            { "data": "title" , "title" : "标题" },
+            { "data": "desc" , "title" : "描述" , ordering:false },
+            { "data": "create_time" , "title" : "发布时间" },
+            { "data": "read_num" , "title" : "阅读数量" },
+            { "data": "like_num" , "title" : "点赞数量" },
+            { "data": "edit" , "title" : "编辑","render":function(val){
+                return '<a href="/admin/Article/modify/'+val+'" class="btn btn-secondary btn-sm btn-icon icon-left" > 编辑 </a>\
+                        <a href="javascript:;" class="btn btn-danger btn-sm btn-icon icon-left" onclick="del('+val+')"> 删除 </a>\
+                        <a href="javascript:;" class="btn btn-info btn-sm btn-icon icon-left"> 详情 </a>';
+            } }
+        ],
+        "language" : {
+            "lengthMenu":     "每页 _MENU_ 显示",
+            "search":         "文章标题：",
+            "info":           "显示 _START_ 到 _END_ 条，共 _TOTAL_ 条",
+            "loadingRecords": "加载中...",
+            "processing":     "执行中...",
+        }
 	});
-	
-	// // Replace checkboxes when they appear
-	// var $state = $("#article_tables thead input[type='checkbox']");
-	
-	// $("#article_tables").on('draw.dt', function()
-	// {
-	// 	cbr_replace();
-		
-	// 	$state.trigger('change');
-	// });
-	
-	// // Script to select all checkboxes
-	// $state.on('change', function(ev)
-	// {
-	// 	var $chcks = $("#article_tables tbody input[type='checkbox']");
-		
-	// 	if($state.is(':checked'))
-	// 	{
-	// 		$chcks.prop('checked', true).trigger('change');
-	// 	}
-	// 	else
-	// 	{
-	// 		$chcks.prop('checked', false).trigger('change');
-	// 	}
-	// });
 });
+
+
+function del(id) {
+    $.ajax({
+        url: '{:url("admin/Article/del")}',
+        type: 'POST',
+        dataType: 'json',
+        data: {"id":id},
+        success:function(data){
+            if (1 == data.code) 
+            {
+                toastr.success(data.msg);
+                setTimeout(function(){
+                    location.href = location.href;
+                },2000);
+            }
+            else
+            {
+                toastr.error(data.msg);
+            }
+        }
+    })
+}
 </script>
