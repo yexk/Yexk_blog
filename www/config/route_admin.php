@@ -13,5 +13,4 @@ Route::alias('article','admin/Article');
 Route::rule('login','admin/Login/index');
 Route::alias('login','admin/Login');
 
-
 // Route::rule('cate/[:name]','admin/Category/:name');

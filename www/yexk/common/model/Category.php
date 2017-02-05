@@ -80,6 +80,31 @@ class Category extends Model
 		}
 	}
 	
+	
+	/**
+	 * 读取数据(前台的博客列表)
+	 * @date 2017年2月5日
+	 * @author Yexk
+	 *
+	 * @param array $post 当传入id的时候获取的是一条数据
+	 * @return Array      返回数据
+	 */
+	public function readList($post = [])
+	{
+		$res = $this->alias('c')->field('c.*,count(a.cid) sum_cid')->join('__ARTICLE__ a','a.cid = c.id','LEFT')->group('c.id')->select();
+		if (!empty($post['id']))
+		{
+			$data['all'] = get_tree($res,$post['pid']);
+			$data['one'] = $this->get(['id'=>$post['id']]);
+			return $data;
+		}	
+		else 
+		{
+			return get_tree($res);
+		}
+	}
+	
+	
 	/**
      * 删除前的检查，如果有子集就不让删除
 	 * @date 2016年12月13日
@@ -122,7 +147,6 @@ class Category extends Model
 		 {
 		 	return ['code'=>0,'msg'=>'删除失败！','data'=>''];
 		 }
-		 
 		 
 	}
 	

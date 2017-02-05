@@ -1,0 +1,82 @@
+{include file='public/header' title='博客'}
+<!-- Main -->
+<div id="main">
+
+<!-- Two -->
+	<section class="wrapper style2">
+		<div class="inner">
+			<header>
+				<h2><!-- 文章分类列表 --></h2>
+				<p>以我之姓，冠你之名。</p>
+			</header>
+			<!-- Tabbed Video Section -->
+				<div class="flex flex-tabs">
+					<ul class="tab-list" id="show_tabs_bloglist">
+						<?php foreach ($category as $k => $v): ?>
+							<li><a style="cursor: pointer;" data-tab="tab-1" data-id="<?php echo $v['id']; ?>"><?php echo '【' . $v['sum_cid'] . '】' . $v['name']; ?></a></li>
+						<?php endforeach ?>
+					</ul>
+					<div class="tabs">
+						<!-- Tab 1 -->
+						<div class="tab tab-1 flex flex-3 active" id="show_tabs_bloglist_show">
+							<!-- ajax -->
+						</div>
+					</div>
+				</div>
+		</div>
+	</section>
+</div>
+
+{include file='public/footer'}
+
+<script>
+	$('#show_tabs_bloglist').on('click', function(event) {
+		var a_element = event.target;
+		// 处理页面加载的时候获取的数据
+		if ('UL' == a_element.tagName) {
+			a_element = a_element.children[0].children[0];
+			$(a_element).addClass('active');
+		}
+		if ('A' == a_element.tagName) 
+		{
+			var cid = $(a_element).data('id');
+			$.ajax({
+				url: '{:url("index/Blog/getArticle")}',
+				type: 'POST',
+				dataType: 'json',
+				data: {'cid':cid},
+				success:function(data){
+					console.log(data);
+					if (1 === data.code) {
+						var _html = '';
+						$.each(data.data, function(index, val) {
+							var img = (null != val.thumb) ? val.thumb : 'images/pic02.jpg';
+							_html += '<div class="video col">\
+										<div class="image fit">\
+											<img src="'+img+'" alt="" />\
+											<div class="arrow">\
+												<div class="icon fa-play"></div>\
+											</div>\
+										</div>\
+										<p class="caption">\
+											'+val.title+'\
+										</p>\
+										<a href="/'+val.id+'.html" class="link"><span>Click Me</span></a>\
+									</div>';
+						});
+					} else {
+						_html = '<div class="video col">\
+									<p class="caption">\
+										'+data.msg+'\
+									</p>\
+								</div>';
+					}
+					$('#show_tabs_bloglist_show').html(_html);
+				}
+			});
+		}
+	});
+	$(function() {
+		$('#show_tabs_bloglist').trigger('click');
+	});
+</script>

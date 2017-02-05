@@ -80,7 +80,7 @@ class Article extends Model
 	{
 		if (!$id) return null;
 		
-		return $this->where(['id'=>$id])->find();
+		return $this->alias('a')->field('a.*,u.name username')->join('__USER__ u','u.id = a.user_id','LEFT')->where(['a.id'=>$id])->find();
 	} 
 	
 	/**
@@ -152,5 +152,54 @@ class Article extends Model
 			return ['code'=>0,'msg'=>'未知错误','data'=>''];
 		}
 	}
+	
+	/**
+	 * 默认获取三条热门的文章
+	 * @date 2017年2月5日
+	 * @author Yexk
+	 *
+	 * @param number $limit 获取的条数
+	 */
+	public function getHot($limit = 3)
+	{
+		return $this->field('id,title,thumb,create_time')->order('read_num Desc')->limit($limit)->select();
+	}
+	
+	/**
+	 * 默认获取四条最新的文章
+	 * @date 2017年2月5日
+	 * @author Yexk
+	 *
+	 * @param number $limit 默认的获取条数
+	 */
+	public function getNew($limit = 4) 
+	{
+		return $this->field('id,title,thumb,create_time')->order('create_time Desc')->limit($limit)->select();
+	}
+	
+	/**
+	 * 获取当前分类的所有列表
+	 * @date 2017年2月5日
+	 * @author Yexk
+	 *
+	 * @param unknown $post cid当前分类id
+	 * @return number[]|string[]|number[]|string[]|unknown[]
+	 */
+	public function getCurrentCategoryArticle($post) 
+	{
+		if (!$post['cid']) return ['code'=>0,'msg'=>'未知错误！','data'=>''];
+		
+		$res = $this->field('id,title,thumb,create_time')->where(['cid'=>$post['cid']])->order('create_time Desc')->limit(1000)->select();
+		if ($res)
+		{
+			return ['code'=>1,'msg'=>'获取成功！','data'=>$res];
+		}
+		else
+		{
+			return ['code'=>0,'msg'=>'暂无数据！！！','data'=>''];
+		}
+		
+	}
+	
 	
 }

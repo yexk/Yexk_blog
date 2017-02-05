@@ -1,0 +1,99 @@
+{include file='public/header' title='博客'}
+<link rel="stylesheet" href="/admin/assets/js/markdown/css/editormd.preview.min.css">
+<!-- <link rel="stylesheet" href="/admin/assets/js/markdown/css/editormd.css"> -->
+<!-- Main -->
+<div id="main">
+	<?php dump($art); ?>
+<!-- One -->
+	<section class="wrapper style2">
+		<div class="inner">
+			<header class="align-center">
+				<h2><?php echo $art['title']; ?></h2>
+				<p>时间：<code><?php echo $art['create_time'] ?></code> 作者：<code><?php echo $art['username'] ?></code> 阅读：<code><?php echo $art['read_num']; ?></code> 赞：<code><?php echo $art['like_num']; ?></code></p>
+			</header>
+			<div class="box">
+				<p><?php echo $art['desc']; ?></p>
+			</div>
+
+			<img src="<?php echo $art['thumb'] ?>" alt="">
+
+			<div class="content" id="content">
+				<textarea><?php echo $art['content']; ?></textarea>
+			</div>
+			<p>
+				<hr>
+				<ul class="icons" style="text-align: center;">
+					<li><a href="#" class="icon fa-heart" style="font-size: 26pt"><span class="label"></span></a></li>
+				</ul>
+			</p>
+		</div>
+	</section>
+
+<!-- Three -->
+	<section class="wrapper style1">
+		<div class="inner">
+			<header class="align-center">
+				<h2>Aliquam ipsum purus dolor</h2>
+				<p>Cras sagittis turpis sit amet est tempus, sit amet consectetur purus tincidunt.</p>
+			</header>
+
+			<!-- 3 Column Video Section -->
+				<div class="flex flex-3">
+					<div class="video col">
+						<div class="image fit">
+							<img src="images/pic09.jpg" alt="" />
+							<div class="arrow">
+								<div class="icon fa-play"></div>
+							</div>
+						</div>
+						<p class="caption">
+							Cras eget lacus sed mauris scelerisque tincidunt
+						</p>
+						<a href="generic.html" class="link"><span>Click Me</span></a>
+					</div>
+					<div class="video col">
+						<div class="image fit">
+							<img src="images/pic10.jpg" alt="" />
+							<div class="arrow">
+								<div class="icon fa-play"></div>
+							</div>
+						</div>
+						<p class="caption">
+							Vivamus vulputate lacus non massa auctor lobortis
+						</p>
+						<a href="generic.html" class="link"><span>Click Me</span></a>
+					</div>
+					<div class="video col">
+						<div class="image fit">
+							<img src="images/pic11.jpg" alt="" />
+							<div class="arrow">
+								<div class="icon fa-play"></div>
+							</div>
+						</div>
+						<p class="caption">
+							Nam eu nisi non ante sodales interdum a vitae neque
+						</p>
+						<a href="generic.html" class="link"><span>Click Me</span></a>
+					</div>
+				</div>
+		</div>
+	</section>
+
+</div>
+
+{include file='public/footer'}
+
+<script src="/admin/assets/js/markdown/lib/marked.min.js"></script>
+<script src="/admin/assets/js/markdown/lib/prettify.min.js"></script>
+<script src="/admin/assets/js/markdown/lib/raphael.min.js"></script>
+<script src="/admin/assets/js/markdown/lib/underscore.min.js"></script>
+<script src="/admin/assets/js/markdown/lib/sequence-diagram.min.js"></script>
+<script src="/admin/assets/js/markdown/lib/flowchart.min.js"></script>
+<script src="/admin/assets/js/markdown/lib/jquery.flowchart.min.js"></script>
+<script src="/admin/assets/js/markdown/editormd.min.js"></script>
+
+<script type="text/javascript">
+	editormd.markdownToHTML("content",{
+		  previewTheme : "dark", 
+	});
+</script>

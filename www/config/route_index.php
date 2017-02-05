@@ -24,5 +24,12 @@ use think\Route;
 	// 'yexk' => 'admin/index/index',
 	// 'cate/[:a]' => 'admin/Category/:a',
 // ];
-Route::get('/','index/Index/index');
 // Route::rule('/a','index/index/index');
+
+Route::get('/','index/Index/index');
+
+Route::get('bloglist','index/Blog/blogList');
+
+Route::get(':id','index/Blog/blog');
+
+Route::miss('/','GET',['ext'=>'html']);
