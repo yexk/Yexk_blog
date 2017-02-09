@@ -62,4 +62,24 @@ class Blog extends Base
     	}
     }
     
+    /**
+     * 点赞数量
+     * @date 2017年2月9日
+     * @author Yexk
+     *
+     */
+    public function setIncLikeNum()
+    {
+    	$request = Request::instance();
+    	if ($request->isAjax())
+    	{
+    	    $post = $request->post();
+    	   	$Art = new Article();
+    	   	return $Art->setIncLikeNum($post);
+    	   	
+    	   	exit();
+    	}
+    }
+    
+    
 }

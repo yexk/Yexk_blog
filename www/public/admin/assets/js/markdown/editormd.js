@@ -3705,7 +3705,9 @@
                 html += "</ul></li>";
             }
 
-            html += "<li><a class=\"toc-level-" + level + "\" href=\"#" + text + "\" level=\"" + level + "\">" + text + "</a><ul>";
+            // html += "<li><a class=\"toc-level-" + level + "\" href=\"#" + text + "\" level=\"" + level + "\">" + text + "</a><ul>";
+            // modify by Yexk @time 2017年2月9日
+            html += "<li><a class='toc-level-" + level + "' href='" + location.href + "#" + text + "' level='" + level + "'>" + text + "</a><ul>";
             lastLevel = level;
         }
         

@@ -1,9 +1,9 @@
 {include file='public/header' title='博客'}
 <link rel="stylesheet" href="/admin/assets/js/markdown/css/editormd.preview.min.css">
+<link rel="stylesheet" href="css/yexk.css" />
 <!-- <link rel="stylesheet" href="/admin/assets/js/markdown/css/editormd.css"> -->
 <!-- Main -->
 <div id="main">
-	<?php dump($art); ?>
 <!-- One -->
 	<section class="wrapper style2">
 		<div class="inner">
@@ -23,7 +23,7 @@
 			<p>
 				<hr>
 				<ul class="icons" style="text-align: center;">
-					<li><a href="#" class="icon fa-heart" style="font-size: 26pt"><span class="label"></span></a></li>
+					<li><a id="like_btn" class="icon fa-heart" style="cursor: pointer;font-size: 26pt"><span class="label"></span></a></li>
 				</ul>
 			</p>
 		</div>
@@ -90,10 +90,33 @@
 <script src="/admin/assets/js/markdown/lib/sequence-diagram.min.js"></script>
 <script src="/admin/assets/js/markdown/lib/flowchart.min.js"></script>
 <script src="/admin/assets/js/markdown/lib/jquery.flowchart.min.js"></script>
-<script src="/admin/assets/js/markdown/editormd.min.js"></script>
+<script src="/admin/assets/js/markdown/editormd.js"></script>
 
 <script type="text/javascript">
-	editormd.markdownToHTML("content",{
-		  previewTheme : "dark", 
+	editormd.markdownToHTML("content");
+
+	$(function(){
+		$('#like_btn').on('click', function(event) {
+			if (! $(this).hasClass('font-red'))
+			{
+				var that = this;
+				$.ajax({
+					url: '{:url("index/blog/setIncLikeNum")}',
+					type: 'POST',
+					dataType: 'json',
+					data: {"id":'<?php echo $art['id'] ?>'},
+					success:function(data){
+						console.log(data);
+						if (1 == data.code)
+						{
+							$(that).addClass('font-red');
+						}else{
+							
+						}
+					}
+				});
+			}
+		});
 	});
+
 </script>

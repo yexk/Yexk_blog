@@ -10,6 +10,7 @@ namespace app\common\model;
 
 use think\Model;
 use think\Session;
+use think\Cookie;
 
 class Article extends Model
 {
@@ -80,8 +81,17 @@ class Article extends Model
 	{
 		if (!$id) return null;
 		
+		$blog_mark = json_decode(Cookie::get('blog_mark'),true);
+		$blog_mark = $blog_mark != null ? $blog_mark : [];  
+		if (!in_array($id, $blog_mark))
+		{
+			$this->where(['id'=>$id])->setInc('read_num');
+			array_push($blog_mark, $id);
+			setcookie('blog_mark',json_encode($blog_mark),time()+30);
+		}
+	
 		return $this->alias('a')->field('a.*,u.name username')->join('__USER__ u','u.id = a.user_id','LEFT')->where(['a.id'=>$id])->find();
-	} 
+	}
 	
 	/**
 	 * 文章的新增和修改操作
@@ -201,5 +211,32 @@ class Article extends Model
 		
 	}
 	
+	/**
+	 * 更新赞的数量
+	 * @date 2017年2月9日
+	 * @author Yexk
+	 *
+	 * @param unknown $post 主键id
+	 * @return number[]|string[] 返回处理结果
+	 */
+	public function setIncLikeNum($post) 
+	{
+		if (!$post['id']) return ['code'=>0,'msg'=>'未知错误！','data'=>''];
+		
+		$id = $post['id'];
+		$blog_like_num = json_decode(Cookie::get('blog_like_num'),true);
+		$blog_like_num = $blog_like_num != null ? $blog_like_num : [];
+		if (!in_array($id, $blog_like_num))
+		{
+			$this->where(['id'=>$id])->setInc('like_num');
+			array_push($blog_like_num, $id);
+			setcookie('blog_like_num',json_encode($blog_like_num),time()+30);
+			return ['code'=>1,'msg'=>'赞+1！','data'=>''];
+
+		}else {
+			return ['code'=>0,'msg'=>'你已经赞过了！','data'=>''];
+		}
+
+	}
 	
 }
