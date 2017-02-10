@@ -33,48 +33,31 @@
 	<section class="wrapper style1">
 		<div class="inner">
 			<header class="align-center">
-				<h2>Aliquam ipsum purus dolor</h2>
-				<p>Cras sagittis turpis sit amet est tempus, sit amet consectetur purus tincidunt.</p>
+				<h2>相关推荐</h2>
+				<p></p>
 			</header>
-
 			<!-- 3 Column Video Section -->
 				<div class="flex flex-3">
+					
+				<?php foreach ($recommend as $k => $v): ?>
 					<div class="video col">
 						<div class="image fit">
-							<img src="images/pic09.jpg" alt="" />
+							<?php if (empty($v['thumb'])): ?>
+								<img src="images/pic01.jpg" alt="" />
+							<?php else: ?>
+								<img src="<?php echo $v['thumb'] ?>" alt="" />
+							<?php endif ?>
 							<div class="arrow">
 								<div class="icon fa-play"></div>
 							</div>
 						</div>
 						<p class="caption">
-							Cras eget lacus sed mauris scelerisque tincidunt
+							<?php echo '【' . date('Y-m-d',$v['create_time']) . '】' . $v['title'] ?>
 						</p>
-						<a href="generic.html" class="link"><span>Click Me</span></a>
+						<a href="{:url('index/Blog/blog',['id'=>$v['id']])}" class="link"><span>Click Me</span></a>
 					</div>
-					<div class="video col">
-						<div class="image fit">
-							<img src="images/pic10.jpg" alt="" />
-							<div class="arrow">
-								<div class="icon fa-play"></div>
-							</div>
-						</div>
-						<p class="caption">
-							Vivamus vulputate lacus non massa auctor lobortis
-						</p>
-						<a href="generic.html" class="link"><span>Click Me</span></a>
-					</div>
-					<div class="video col">
-						<div class="image fit">
-							<img src="images/pic11.jpg" alt="" />
-							<div class="arrow">
-								<div class="icon fa-play"></div>
-							</div>
-						</div>
-						<p class="caption">
-							Nam eu nisi non ante sodales interdum a vitae neque
-						</p>
-						<a href="generic.html" class="link"><span>Click Me</span></a>
-					</div>
+				<?php endforeach ?>
+						
 				</div>
 		</div>
 	</section>

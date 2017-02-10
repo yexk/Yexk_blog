@@ -92,6 +92,22 @@ class Article extends Model
 	
 		return $this->alias('a')->field('a.*,u.name username')->join('__USER__ u','u.id = a.user_id','LEFT')->where(['a.id'=>$id])->find();
 	}
+
+	/**
+	 * 相关推荐
+	 * 根据当前的id获取当当前分类，然后根据阅读数量进行倒叙去除3条
+	 * @Author Yexk
+	 * @Date   2017-02-10
+	 * @param  Number     $id [当前文章的id]
+	 * @return object         [返回一个模型对象]
+	 */
+	public function reconmend($id = '')
+	{
+		if (!$id && !is_numeric($id)) return null;
+
+		return $this->query("SELECT id,title,thumb,create_time FROM ye_article WHERE cid = ( SELECT cid FROM `ye_article` WHERE id = {$id} ) ORDER BY ye_article.read_num DESC LIMIT 3");
+	}
+
 	
 	/**
 	 * 文章的新增和修改操作

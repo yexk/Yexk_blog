@@ -37,6 +37,9 @@ class Blog extends Base
 		$Art = new Article();
 		$this->assign('art',$Art->findOne($id));
 		
+		// 相关推荐
+        $this->assign('recommend',$Art->reconmend($id));
+        var_dump($Art->reconmend($id));
 		
         return $this->fetch();
     }
