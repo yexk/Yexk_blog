@@ -1,6 +1,6 @@
 # Yexk_blog
 
-## 此项目已经暂停开放。已经转移到：[https://github.com/yexk/project](https://github.com/yexk/project) 使用的laravel框架。等写完了在回来写thinkphp版本的。
+## 此项目已经暂停开发。已经转移到：[https://github.com/yexk/project](https://github.com/yexk/project) 使用的laravel框架。等写完了在回来写thinkphp版本的。
 
 this is blog 
 ```
